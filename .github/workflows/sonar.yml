@@ -30,6 +30,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Debug secrets
+        run: |
+          echo "SONAR_HOST_URL length=${#SONAR_HOST_URL}"
+          echo "SONAR_TOKEN length=${#SONAR_TOKEN}"
+          echo "OPENSEARCH_URL length=${#OPENSEARCH_URL}"
+        env:
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          OPENSEARCH_URL: ${{ secrets.OPENSEARCH_URL }}
+
       - name: Install Sonar Scanner
         run: |
           sudo apt-get update
